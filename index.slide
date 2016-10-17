@@ -1,0 +1,145 @@
+Ağaçtaki Veriyi Toplamak
+Türkiye Servis Sağlayıcıları İstatistikleri
+15:04 22 Oct 2006
+Tags: asn,golang,mongodb,ripe
+
+Oğuzhan YILMAZ
+Technical Lead, MaestroPanel
+oguzhan@maestropanel.com
+http://www.oguzhan.info/
+@c1982
+
+* Ben Kimim?
+
+- 2013 MaestroPanel
+- 2010 Vargonen Technologies
+- 2009 Teknoas Internet Hizmetleri
+- 2003 Websahibi Internet Hizmetleri
+
+* Hikaye
+
+Veri eksikliği
+
+* Amaç
+
+Türkiye'de faliyet gösteren servis sağlayıcılarının Ağ karakteristiğini öğrenerek iş geliştirme faliyetleri yürütmek.
+
+* Sorular?
+
+- Hangi IP'leri taramamız gerekiyor?
+- Hangi IP, hangi firmaya ait?
+- Hiyerarşiyi nasıl belirleyeceğiz?
+- Hangi servisler bizim için önemli?
+- Servisleri uzaktan nasıl belirleyebiliriz?
+- Nasıl sürdürülebilir kılarız?
+
+* Hangi IP'leri taramamız gerekiyor?
+
+* RIPE (Réseaux IP Européens) - www.ripe.net
+
+	We’re the Regional Internet Registry for Europe, the Middle East and parts of Central Asia. 
+	As such, we allocate and register blocks of Internet number resources to 
+	Internet service providers (ISPs) and other organisations.
+		
+* Whois
+	
+	whois -h riswhois.ripe.net 212.3.66.0/24
+	
+	route:        212.3.64.0/19
+	origin:       AS8900
+	descr:        Global One Hungary Internet and extranet provider network
+	lastupd-frst: 2004-03-11 19:19Z  193.203.0.7@rrc05
+	lastupd-last: 2004-03-11 19:19Z  193.203.0.7@rrc05
+	seen-at:      rrc05
+	num-rispeers: 1
+	source:       RISWHOIS
+	
+Rate Limit 5000/gün, Cezası 12 saat IP ban.
+	
+* Veritabanı
+
+	ftp://ftp.ripe.net/ripe/dbase/ripe.db.gz (Hepsi)
+	ftp://ftp.ripe.net/ripe/dbase/split/ripe.db.aut-num.gz (AS Numaraları)
+	ftp://ftp.ripe.net/ripe/dbase/split/ripe.db.as-set.gz (AS Tanımlamaları)
+	ftp://ftp.ripe.net/ripe/dbase/split/ripe.db.inetnum.gz (IP Blockları)
+
+Hergün saat 03:00'da güncelleniyor
+RSPL formatında (rfc2622)
+Rate limit yok
+Parser yazmak gerekiyor (https://github.com/c1982/ripego)
+
+* GSR Mirror
+
+.link https://github.com/RIPE-NCC/whois github.com/RIPE-NCC/whois github.com/RIPE-NCC/whois
+
+- Her gün güncellenen veritabanını local olarak mirror yapar.
+- Kendi sunucunuza kurmanız gerekiyor. (Java, MariaDB)
+- Rate limit yok.
+
+
+* Near Real Time Mirroring (NRTM)
+
+.link https://www.ripe.net/manage-ips-and-asns/db/nrtm-mirroring ripe.net/manage-ips-and-asns/db/nrtm-mirroring
+
+- Güncellenen verileri gerçek zamanlı olarak local mirror'a gönderir.
+- RIPE Local Internet Registry (LIR) olmanız şartı var.
+- RIPE'ı ikna etmeniz gerekiyor.
+- Kendi sunucunuza kurmanız gerekiyor. (Java, MariaDB)
+- Rate limit yok.
+
+* API (stat.ripe.net)
+
+- RESTful 
+- Public
+- Rate limit var
+- Hazır veri seti var
+- Kolay
+
+* Türkiye'deki IP blokları ve AS Numaraları
+
+.link https://stat.ripe.net/data/country-resource-list/data.json?resource=TR stat.ripe.net/data/country-resource-list/data.json?resource=TR
+	
+    "data": {        
+        "resources": {
+            "ipv6": [
+                "2001:678:1a4::/48"                       
+            ], 
+            "asn": [
+                "1885", 
+                "2592", 
+                "2600", 
+                "2872"                            
+            ], 
+            "ipv4": [
+                "5.2.80.0/21", 
+                "5.11.128.0/17", 
+                "5.23.120.0/21", 
+                "5.24.0.0/14",                         
+            ]
+        }
+    }	
+	
+* ASN üzerinden yayınlanan Prefix'ler
+
+.link https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS43260 stat.ripe.net/data/announced-prefixes/data.json?resource=AS43260
+    
+    "data": {
+        "resource": "43260", 
+        "prefixes": [ 
+            {
+                "timelines": [{"endtime": "2016-09-24T16:00:00", "starttime": "2016-09-10T16:00:00"}], 
+                "prefix": "185.119.80.0/24"
+            }, 
+            {
+                "timelines": [{"endtime": "2016-09-24T16:00:00", "starttime": "2016-09-10T16:00:00"}], 
+                "prefix": "185.86.152.0/24"
+            }
+        ]
+    }
+	
+* Referanslar
+
+- AS Numarası = Firma
+- Firma'nın Anonas ettiği IP blockları	   
+- Sunucular (TPC, ICMP)
+- Servisler
