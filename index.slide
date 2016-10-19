@@ -137,9 +137,58 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
         ]
     }
 	
-* Referanslar
+* Cevap
 
-- AS Numarası = Firma
-- Firma'nın Anonas ettiği IP blockları	   
-- Sunucular (TPC, ICMP)
-- Servisler
+.image q1-result.png
+
+Hangi IP'leri taramamız gerekiyor?
+Hangi IP, hangi firmaya ait?
+Hiyerarşiyi nasıl belirleyeceğiz?
+
+
+* Optimizasyon
+
+*** Sorun ?
+
+Visible prefix'lerin görünmemesi. Bu durumun Firma, IP eşleştirmesini bozması.
+
+*** Çözüm
+
+Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
+
+- Quagga [[http://www.nongnu.org/quagga/][www.nongnu.org/quagg]]
+
+.image quagga-logo.png
+
+* Veritabanı
+
+- MariaDB
+- Percona
+- MongoDB
+- InfluxDB
+
+* Tarama
+
+- Aktif IP'lerin belirlenmesi.
+- İşletim Sistemlerinin belirlenmesi.
+- Kontrol Panellerin belirlenmesi.
+- Veritabanlarının belirlenmesi.
+- Web Sunucusunun belirlenmesi.
+
+* İşletim Sistemi
+
+Windows: TTL, Web Server Header, 25, 110, WinRM
+Linux: TTL, Web Server, 25, 110, SSH, sFTP
+
+* Kontrol Panel
+
+Web Server header,
+
+* TCP Scan
+
+- Golang
+- TcpRaw paketi
+- Go Channel,
+- Saniyede 10.000 paket 
+- Ethernet kartı optimizasyonu
+
