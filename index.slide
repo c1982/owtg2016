@@ -6,7 +6,7 @@ Tags: asn,golang,mongodb,ripe
 Oğuzhan YILMAZ
 Technical Lead, MaestroPanel
 oguzhan@maestropanel.com
-http://www.oguzhan.info/
+http://blog.oguzhan.info
 @c1982
 
 * Ben Kimim?
@@ -75,7 +75,6 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
 - Her gün güncellenen veritabanını local olarak mirror yapar.
 - Kendi sunucunuza kurmanız gerekiyor. (Java, MariaDB)
 - Rate limit yok.
-
 
 * Near Real Time Mirroring (NRTM)
 
@@ -203,8 +202,9 @@ Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
 
 * Kod
 
-- Golang
-- Async
+http://www.darkcoding.net/uncategorized/raw-sockets-in-go-ip-layer/
+https://github.com/grahamking/latency/blob/master/tcp.go
+http://www.darkcoding.net/software/raw-sockets-in-go-link-layer/
 
 * Random Tarama
 
@@ -278,8 +278,9 @@ read  : 3369ms
 
 * MongoDB Driver for Golang
 
--  mgo [[https://labix.org/mgo][labix.org/mgo]]
-
+- mgo [[https://labix.org/mgo][labix.org/mgo]] ✓
+- gomongo [[https://github.com/mikejs/gomongo][github.com/mikejs/gomongo]]
+- hamster [[https://github.com/hamsterhq/hamster][github.com/hamsterhq/hamster]]
 
 * mgo example
 
@@ -287,21 +288,77 @@ read  : 3369ms
 
 * Web Framework
 
-- Revel [[https://revel.github.io/][revel.github.io]]
-
+- Revel [[https://revel.github.io/][revel.github.io]] ✓
 .image revel-logo.png
+
+*** Gingonic, Martini, Gorilla
 
 * Revel
 
 - Route için config var.
 
+	# Routes
+	# This file defines all application routes (Higher priority routes first)
+	# ~~~~
+	
+	module:testrunner
+	
+	GET     /                                 	Report.Index
+	GET     /report/:asn                      	Report.Detail
+	POST	/query						Report.Query
+	
+	# Ignore favicon requests
+	GET     /favicon.ico                            404
+	
+	# Map static resources from the /app/public folder to the /public path
+	GET     /public/*filepath                       Static.Serve("public")
+	
+	# Catch all
+	*       /:controller/:action                    :controller.:action
+
+
 * Revel
 
-- MVC Konsepti var.
+- MVC
+- Filter
+- Templates
+
+.image revel-mvc.png
 
 * Revel
 
-- Test Framework'ü İş Görüyor
+- Testrunner
+
+.image Tests3.png
+
+* CSS Framework
+
+- Foundation Zurb 6 [[http://foundation.zurb.com][foundation.zurb.com]] ✓
+
+.image foundation-zurb.png
+
+* Grafik
+
+- Google Chart [[https://developers.google.com/chart/][developers.google.com/chart]]
+
+.image google-chart.png
+
+* ipstats.info
+
+.image ipstats-ss-search.png
+
+* ipstats.info
+
+.image ipstats-ss-detail.png
+
+* Sonuç
+
+.image ipstats-ss-history.png
+
+* Sonuç
+
+.caption Türkiye TOP 20
+.image top-15.png
 
 * Diğer Silahlar
 
