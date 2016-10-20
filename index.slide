@@ -145,7 +145,6 @@ Hangi IP'leri taramamız gerekiyor?
 Hangi IP, hangi firmaya ait?
 Hiyerarşiyi nasıl belirleyeceğiz?
 
-
 * Optimizasyon
 
 *** Sorun ?
@@ -160,35 +159,65 @@ Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
 
 .image quagga-logo.png
 
-* Veritabanı
+* Aradığımız Veriler
 
-- MariaDB
-- Percona
-- MongoDB
-- InfluxDB
-
-* Tarama
-
-- Aktif IP'lerin belirlenmesi.
-- İşletim Sistemlerinin belirlenmesi.
-- Kontrol Panellerin belirlenmesi.
-- Veritabanlarının belirlenmesi.
-- Web Sunucusunun belirlenmesi.
+- İşletim Sistemi _(Linux,_Windows)_
+- Kontrol Panel _(Plesk,_cPanel,_MaestroPanel_vb.)_
+- Toplam IP Sayısı _(Prefix_toplamı)_
+- Aktif IP Sayısı _(http,_tcp,_udp,_icmp_cevap_veren)_
 
 * İşletim Sistemi
 
-Windows: TTL, Web Server Header, 25, 110, WinRM
-Linux: TTL, Web Server, 25, 110, SSH, sFTP
+.image os-win-lin.png
+
+- Nmap OS Fingerprinting 2nd Generation DB [[https://svn.nmap.org/nmap/nmap-os-db]][[svn.nmap.org/nmap/nmap-os-db]]
 
 * Kontrol Panel
 
-Web Server header,
+- cPanel (http: 2082,2083)
+- Plesk (http: 8443, Header: PleskLin, PleskWin)
+- DirectAdmin (http:2222, Index Title)
+- MaestroPanel (http: 9715, 9714)
+- WebsitePanel (http: 9001, Index Title)
+- VestaCp (http: 8083, Index Title)
 
-* TCP Scan
+* IP Sayıları
+
+*** Toplam IP
+
+- AS'ın yayınladığı Prefix toplamı
+
+*** Aktif IP
+
+- Http, TCP, UDP veya ICMP sorgusuna cevap veren IP
+
+.image active-ip.png
+
+* Port Açık mı?
+
+.image established.png
+
+* Port Açık mı?
+
+.image established-opt.png
+
+* Kod
 
 - Golang
-- TcpRaw paketi
-- Go Channel,
-- Saniyede 10.000 paket 
-- Ethernet kartı optimizasyonu
+- Async
 
+* Random Tarama
+
+- Her seferinde ayrı subnet'ten IP taramak lazım.
+
+.html randomize.html
+
+* Veritabanı
+
+- MongoDB
+
+* Diğer Silahlar
+
+- masscan [[https://github.com/robertdavidgraham/masscan][github.com/robertdavidgraham/masscan]]
+- unicornscan [[http://www.unicornscan.org][unicornscan.org]]
+- ZMap [[https://zmap.io/][zmap.io]]
