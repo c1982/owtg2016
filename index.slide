@@ -212,9 +212,96 @@ Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
 
 .html randomize.html
 
+* Veriler
+
+- Tolam 16.354.304 IP adresi
+- Saniyede 10.000 paket
+- Tarama başına 800MB disk
+- Tarama başına 2.815.993 kayıt
+
 * Veritabanı
 
-- MongoDB
+.html mysql-mongo.html
+
+* Veritabanı
+
+*** 10.000 satır
+
+*mysql*
+write : 732600ms (12,21 minutes)
+read  : 144ms
+
+*mongo*
+write : 8950ms (8.95 seconds)
+read  : 4839ms (4.839 seconds)
+
+* Veritabanı
+
+*** 10.000 satır, SSD, Engine=MyISAM
+
+*mysql*
+write : 4281ms
+read  : 51ms
+
+*mongo*
+write : 7280ms 
+read  : 3369ms 
+
+* Karar
+
+- Ne yaptığımızı bilmediğimiz için MongoDB'ye karar kıldık.
+
+.image mongo-logo.png
+
+* document 1
+
+	{
+	"_id" : ObjectId("57ebbd4501bb3312ecfd8c52"),	
+	"asn" : "AS1885", "ip" : "162.128.171.139", "date" : ISODate("2016-09-28T12:53:25.282Z"),
+	"ports" : [ 
+		{
+		"port" : 80, "proto" : "tcp","ttl" : 46            
+	    }
+	]}
+	
+*** document 2
+
+	{
+	"_id" : ObjectId("57ebbd4501bb3312ecfd8c52"),	
+	"asn" : "AS1885", "ip" : "162.128.171.139", "date" : ISODate("2016-09-28T12:53:25.282Z"),
+	"ports" : [ 
+		{
+		"port" : 80, "proto" : "http","ttl" : 46            
+	    },
+	"title" : "Default MaestroPanel Page"
+	]}
+
+* MongoDB Driver for Golang
+
+-  mgo [[https://labix.org/mgo][labix.org/mgo]]
+
+
+* mgo example
+
+.code mongo-example.go
+
+* Web Framework
+
+- Revel [[https://revel.github.io/][revel.github.io]]
+
+.image revel-logo.png
+
+* Revel
+
+- Route için config var.
+
+* Revel
+
+- MVC Konsepti var.
+
+* Revel
+
+- Test Framework'ü İş Görüyor
 
 * Diğer Silahlar
 
