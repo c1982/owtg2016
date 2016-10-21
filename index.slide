@@ -275,6 +275,10 @@ read  : 3369ms
 	    },
 	"title" : "Default MaestroPanel Page"
 	]}
+	
+* MongoDB Sıkılaştırması
+
+- DisableAuthentication on local
 
 * MongoDB Driver for Golang
 
@@ -333,7 +337,7 @@ read  : 3369ms
 
 * CSS Framework
 
-- Foundation Zurb 6 [[http://foundation.zurb.com][foundation.zurb.com]] ✓
+- Zurb Foundation 6 [[http://foundation.zurb.com][foundation.zurb.com]] ✓
 
 .image foundation-zurb.png
 
@@ -359,6 +363,13 @@ read  : 3369ms
 
 .caption Türkiye TOP 20
 .image top-15.png
+
+* Problem
+
+- Aynı sunucuda çalışan IP adreslerini tespit etmek?
+
+
+.image idontknow.gif
 
 * Diğer Silahlar
 
