@@ -9,31 +9,46 @@ oguzhan@maestropanel.com
 http://blog.oguzhan.info
 @c1982
 
-* Ben Kimim?
+* Oğuzhan YILMAZ
 
-- 2013 MaestroPanel
+- 2012 MaestroPanel
 - 2010 Vargonen Technologies
 - 2009 Teknoas Internet Hizmetleri
 - 2003 Websahibi Internet Hizmetleri
 
-* Hikaye
+* ipstats.info
 
-Veri eksikliği
+* ipstats.info
 
-* Amaç
+- Türkiye'de AS numarasına sahip olan kuruluşların yönettikleri yapıları izleyerek ağ karakteristiğini belirleyen veri servisi.
 
-Türkiye'de faliyet gösteren servis sağlayıcılarının Ağ karakteristiğini öğrenerek iş geliştirme faliyetleri yürütmek.
 
-* Sorular?
+*** AS?
 
-- Hangi IP'leri taramamız gerekiyor?
-- Hangi IP, hangi firmaya ait?
-- Hiyerarşiyi nasıl belirleyeceğiz?
-- Hangi servisler bizim için önemli?
-- Servisleri uzaktan nasıl belirleyebiliriz?
-- Nasıl sürdürülebilir kılarız?
+- Autonomous System / Otonom Sistemler
+- IP ağlarının sınırlarının belirlenmesi ve daha kolay yönetilmesini sağlayan bir sistemdir. 
 
-* Hangi IP'leri taramamız gerekiyor?
+
+* Çıkış Notkası
+
+Pazarlama ekibimizin (1 kişi) iş geliştirmede önceliklendirmeye yardımcı olması için ortaya çıkmış bir proje.
+
+Sorular?
+
+- Hangi işletim sistemi tercih ediliyor?
+- Ürünümüzü kullanıyor mu?
+- Rakiplerimizi kullanıyor mu?
+- Büyüklüğü ne kadar?
+- Hangi hızla büyüyor?
+
+* Farkettik!
+
+- Firmalar IP büyüklüklerini ve aktivitelerini bilmiyor.
+- Rakiplerin büyüklüklerini ve ağ karakteristiğini bimiyor.
+- Tamamen tahmini hareket ediliyor.
+- Geçmiş bilinmediğinden, ileriye dönük kararlar tahmini alınıyor.
+
+* Nereden Başlayacağız?
 
 * RIPE (Réseaux IP Européens) - www.ripe.net
 
@@ -54,7 +69,7 @@ Türkiye'de faliyet gösteren servis sağlayıcılarının Ağ karakteristiğini
 	num-rispeers: 1
 	source:       RISWHOIS
 	
-Rate Limit 5000/gün, Cezası 12 saat IP ban.
+- Rate Limit 5000/gün, Cezası 12 saat IP ban.
 	
 * Veritabanı
 
@@ -63,14 +78,14 @@ Rate Limit 5000/gün, Cezası 12 saat IP ban.
 	ftp://ftp.ripe.net/ripe/dbase/split/ripe.db.as-set.gz (AS Tanımlamaları)
 	ftp://ftp.ripe.net/ripe/dbase/split/ripe.db.inetnum.gz (IP Blockları)
 
-Hergün saat 03:00'da güncelleniyor
-RSPL formatında (rfc2622)
-Rate limit yok
-Parser yazmak gerekiyor (https://github.com/c1982/ripego)
+- Hergün saat 03:00'da güncelleniyor
+- RSPL formatında (rfc2622)
+- Rate limit yok
+- Parser yazmak gerekiyor ([[https://github.com/c1982/ripego][github.com/c1982/ripego]])
 
 * GSR Mirror
 
-.link https://github.com/RIPE-NCC/whois github.com/RIPE-NCC/whois github.com/RIPE-NCC/whois
+.link https://github.com/RIPE-NCC/whois
 
 - Her gün güncellenen veritabanını local olarak mirror yapar.
 - Kendi sunucunuza kurmanız gerekiyor. (Java, MariaDB)
@@ -78,7 +93,7 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
 
 * Near Real Time Mirroring (NRTM)
 
-.link https://www.ripe.net/manage-ips-and-asns/db/nrtm-mirroring ripe.net/manage-ips-and-asns/db/nrtm-mirroring
+.link https://www.ripe.net/manage-ips-and-asns/db/nrtm-mirroring
 
 - Güncellenen verileri gerçek zamanlı olarak local mirror'a gönderir.
 - RIPE Local Internet Registry (LIR) olmanız şartı var.
@@ -96,7 +111,7 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
 
 * Türkiye'deki IP blokları ve AS Numaraları
 
-.link https://stat.ripe.net/data/country-resource-list/data.json?resource=TR stat.ripe.net/data/country-resource-list/data.json?resource=TR
+.link https://stat.ripe.net/data/country-resource-list/data.json?resource=TR
 	
     "data": {        
         "resources": {
@@ -120,7 +135,7 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
 	
 * ASN üzerinden yayınlanan Prefix'ler
 
-.link https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS43260 stat.ripe.net/data/announced-prefixes/data.json?resource=AS43260
+.link https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS43260
     
     "data": {
         "resource": "43260", 
@@ -136,29 +151,27 @@ Parser yazmak gerekiyor (https://github.com/c1982/ripego)
         ]
     }
 	
-* Cevap
+* Sonuç
 
 .image q1-result.png
 
-Hangi IP'leri taramamız gerekiyor?
-Hangi IP, hangi firmaya ait?
-Hiyerarşiyi nasıl belirleyeceğiz?
+* Problem?
 
-* Optimizasyon
+* Problem
 
-*** Sorun ?
-
-Visible prefix'lerin görünmemesi. Bu durumun Firma, IP eşleştirmesini bozması.
+- RIPE'ın Visible Prefix'lerin görünmemesi. BGP hatalarını  yakalayamaması. Bu durumun Firma, IP eşleştirmesini bozması.
 
 *** Çözüm
 
-Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
-
-- Quagga [[http://www.nongnu.org/quagga/][www.nongnu.org/quagg]]
+- Fiziksel bir Router'a erişim şart. 
+- Bir ISP'yi BGP Full-Anons Mirror vermesi için kandır.
+- Quagga Kullan [[http://www.nongnu.org/quagga/][www.nongnu.org/quagg]]
 
 .image quagga-logo.png
 
-* Aradığımız Veriler
+* Gelsin Veriler
+
+* Kritik Metrikler
 
 - İşletim Sistemi _(Linux,_Windows)_
 - Kontrol Panel _(Plesk,_cPanel,_MaestroPanel_vb.)_
@@ -192,6 +205,8 @@ Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
 
 .image active-ip.png
 
+* Port Tarama
+
 * Port Açık mı?
 
 .image established.png
@@ -200,11 +215,11 @@ Bir ISP'yi BGP Full-Anons Mirror vermesi için kandırmak.
 
 .image established-opt.png
 
-* Kod
+* Diğer Silahlar
 
-http://www.darkcoding.net/uncategorized/raw-sockets-in-go-ip-layer/
-https://github.com/grahamking/latency/blob/master/tcp.go
-http://www.darkcoding.net/software/raw-sockets-in-go-link-layer/
+- masscan [[https://github.com/robertdavidgraham/masscan][github.com/robertdavidgraham/masscan]]
+- unicornscan [[http://www.unicornscan.org][unicornscan.org]]
+- ZMap [[https://zmap.io/][zmap.io]]
 
 * Random Tarama
 
@@ -212,7 +227,9 @@ http://www.darkcoding.net/software/raw-sockets-in-go-link-layer/
 
 .html randomize.html
 
-* Veriler
+* Mahsul
+
+* Mahsul
 
 - Tolam 16.354.304 IP adresi
 - Saniyede 10.000 paket
@@ -222,30 +239,6 @@ http://www.darkcoding.net/software/raw-sockets-in-go-link-layer/
 * Veritabanı
 
 .html mysql-mongo.html
-
-* Veritabanı
-
-*** 10.000 satır
-
-*mysql*
-write : 732600ms (12,21 minutes)
-read  : 144ms
-
-*mongo*
-write : 8950ms (8.95 seconds)
-read  : 4839ms (4.839 seconds)
-
-* Veritabanı
-
-*** 10.000 satır, SSD, Engine=MyISAM
-
-*mysql*
-write : 4281ms
-read  : 51ms
-
-*mongo*
-write : 7280ms 
-read  : 3369ms 
 
 * Karar
 
@@ -276,10 +269,9 @@ read  : 3369ms
 	"title" : "Default MaestroPanel Page"
 	]}
 	
-* MongoDB Sıkılaştırması
-
-- DisableAuthentication on local
-
+	
+* Kodlama
+	
 * MongoDB Driver for Golang
 
 - mgo [[https://labix.org/mgo][labix.org/mgo]] ✓
@@ -293,9 +285,11 @@ read  : 3369ms
 * Web Framework
 
 - Revel [[https://revel.github.io/][revel.github.io]] ✓
-.image revel-logo.png
+.image	 revel-logo.png
 
-*** Gingonic, Martini, Gorilla
+*** Beego, Martini, Gorilla v.b. 
+
+* Revel
 
 * Revel
 
@@ -351,28 +345,35 @@ read  : 3369ms
 
 .image ipstats-ss-search.png
 
-* ipstats.info
+* Rapor
 
 .image ipstats-ss-detail.png
 
-* Sonuç
+* Servisler
+
+.image ipstats-ss-services.png
+
+* Kontrol Panelleri
+
+.image ipstats-ss-panels.png
+
+* Veritabanları
+
+.image ipstats-ss-dbs.png
+
+* Geçmiş
 
 .image ipstats-ss-history.png
 
-* Sonuç
+* Türkiye TOP 20
 
 .caption Türkiye TOP 20
 .image top-15.png
 
 * Problem
 
+* Problem
+
 - Aynı sunucuda çalışan IP adreslerini tespit etmek?
 
-
 .image idontknow.gif
-
-* Diğer Silahlar
-
-- masscan [[https://github.com/robertdavidgraham/masscan][github.com/robertdavidgraham/masscan]]
-- unicornscan [[http://www.unicornscan.org][unicornscan.org]]
-- ZMap [[https://zmap.io/][zmap.io]]
